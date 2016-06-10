@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><%= link_to 'Show', @user %></li>
+  <li><%= link_to 'Edit', edit_user_path %></li>
+</ul>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user.password %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <strong>Birth date:</strong>
+  <%= @user.birth_date %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @user.height %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @user.weight %>
+</p>
+
+<%= link_to 'Back', users_path, class: "btn btn-default" %>
