@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><%= link_to 'View list', users_path %></li>
   <li><%= link_to new_user_path do %>
@@ -39,9 +37,9 @@
                     <h4 class="modal-title" id="user-<%= user.id %>-label">Details</h4>
                   </div>
                   <div class="modal-body">
-                    <li>Birth date: <%= user.birth_date.strftime('%B %d, %Y') %></li>
-                    <li>Height: <%= user.height %></li>
-                    <li>Weight: <%= user.weight %></li>
+                    <li>Birth date: <%= user.birth_date.strftime('%B %d, %Y') if user.birth_date? %></li>
+                    <li>Height: <%= "#{(user.height / 12).floor}' #{user.height % 12}\"" if user.height? %></li>
+                    <li>Weight: <%= "#{user.weight} lb" if user.weight? %></li>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
