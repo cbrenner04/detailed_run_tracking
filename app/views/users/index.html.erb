@@ -53,10 +53,14 @@
           <div class="btn btn-default"><%= link_to 'Show', user %></div>
         </td>
         <td>
-          <div class="btn btn-warning"><%= link_to 'Edit', edit_user_path(user) %></div>
+          <% if (user == current_user) || (can? :manage, :all) %>
+            <div class="btn btn-warning"><%= link_to 'Edit', edit_user_path(user) %></div>
+          <% end %>
         </td>
         <td>
-          <div class="btn btn-danger"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          <% if can? :manage, :all %>
+            <div class="btn btn-danger"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          <% end %>
         </td>
       </tr>
     <% end %>
