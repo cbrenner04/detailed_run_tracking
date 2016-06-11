@@ -8,6 +8,7 @@ one:
   birth_date: 2016-06-10
   height: 1
   weight: 1
+  is_admin: true
 
 two:
   email: NewSting
