@@ -1,5 +1,7 @@
-require 'test_helper'
+# frozen_string_literal: true
+require "test_helper"
 
+# users controller test
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
@@ -17,8 +19,16 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should create user" do
-    assert_difference('User.count') do
-      post :create, user: { birth_date: @user.birth_date, email: @user.email, first_name: @user.first_name, height: @user.height, last_name: @user.last_name, password: @user.password, weight: @user.weight }
+    assert_difference("User.count") do
+      post :create, user: {
+        birth_date: @user.birth_date,
+        email: @user.email,
+        first_name: @user.first_name,
+        height: @user.height,
+        last_name: @user.last_name,
+        password: @user.password,
+        weight: @user.weight
+      }
     end
 
     assert_redirected_to user_path(assigns(:user))
@@ -35,12 +45,20 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { birth_date: @user.birth_date, email: @user.email, first_name: @user.first_name, height: @user.height, last_name: @user.last_name, password: @user.password, weight: @user.weight }
+    patch :update, id: @user, user: {
+      birth_date: @user.birth_date,
+      email: @user.email,
+      first_name: @user.first_name,
+      height: @user.height,
+      last_name: @user.last_name,
+      password: @user.password,
+      weight: @user.weight
+    }
     assert_redirected_to user_path(assigns(:user))
   end
 
   test "should destroy user" do
-    assert_difference('User.count', -1) do
+    assert_difference("User.count", -1) do
       delete :destroy, id: @user
     end
 

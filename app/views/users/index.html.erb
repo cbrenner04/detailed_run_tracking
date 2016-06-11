@@ -21,7 +21,9 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= "#{user.first_name} #{user.last_name}" %></td>
+        <td>
+          <button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Email" data-content="<%= user.email %>"><%= "#{user.first_name} #{user.last_name}" %></button>
+        </td>
         <td>
           <span class="has-tooltip" data-toggle="tooltip" title="Click to view Birth Date, Height, and Weight">
             <!-- Button trigger modal -->

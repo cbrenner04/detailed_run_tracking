@@ -1,0 +1,32 @@
+AllCops:
+  Exclude:
+    - bin/**/*
+    - config/**/*
+    - db/**/*
+    - gemfiles/**/*
+    - vendor/**/*
+  TargetRubyVersion: 2.3
+
+Rails:
+  Enabled: true
+
+Documentation:
+  Exclude:
+    - spec/**/*
+
+LambdaCall:
+  Enabled: false
+
+LineLength:
+  Exclude:
+    - spec/**/*
+  Max: 80
+
+NumericLiterals:
+  Enabled: false
+
+SpaceInsideStringInterpolation:
+  EnforcedStyle: no_space
+
+StringLiterals:
+  EnforcedStyle: double_quotes
