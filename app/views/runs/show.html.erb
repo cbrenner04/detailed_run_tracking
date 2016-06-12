@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Occurred at:</strong>
+  <%= @run.occurred_at %>
+</p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @run.distance %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @run.time %>
+</p>
+
+<%= link_to 'Edit', edit_run_path(@run) %> |
+<%= link_to 'Back', runs_path %>

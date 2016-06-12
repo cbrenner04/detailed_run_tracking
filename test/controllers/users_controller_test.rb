@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 require "test_helper"
-require "devise"
 
 # users controller test
 class UsersControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
-
   setup do
     @user = users(:one)
     sign_in users(:two)
