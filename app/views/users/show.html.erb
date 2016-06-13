@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><%= link_to 'Show', @user %></li>
-  <li><%= link_to 'Edit', edit_user_path %></li>
+  <li><%= link_to 'Edit', edit_user_path(@user) %></li>
 </ul>
 
 <h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>

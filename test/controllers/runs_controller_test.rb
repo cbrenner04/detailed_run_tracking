@@ -5,56 +5,57 @@ require "test_helper"
 class RunsControllerTest < ActionController::TestCase
   setup do
     @run = runs(:one)
-    sign_in users(:one)
+    @user = users(:one)
+    sign_in @user
   end
 
   test "should get index" do
-    get :index
+    get :index, user_id: @user.id
     assert_response :success
     assert_not_nil assigns(:runs)
   end
 
   test "should get new" do
-    get :new
+    get :new, user_id: @user.id
     assert_response :success
   end
 
   test "should create run" do
     assert_difference("Run.count") do
-      post :create, run: {
+      post :create, user_id: @user.id, run: {
         distance: @run.distance,
         occurred_at: @run.occurred_at,
         time: @run.time
       }
     end
 
-    assert_redirected_to run_path(assigns(:run))
+    assert_redirected_to user_run_path(assigns(:run), user_id: @user.id)
   end
 
   test "should show run" do
-    get :show, id: @run
+    get :show, user_id: @user.id, id: @run
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @run
+    get :edit, user_id: @user.id, id: @run
     assert_response :success
   end
 
   test "should update run" do
-    patch :update, id: @run, run: {
+    patch :update, user_id: @user.id, id: @run, run: {
       distance: @run.distance,
       occurred_at: @run.occurred_at,
       time: @run.time
     }
-    assert_redirected_to run_path(assigns(:run))
+    assert_redirected_to user_run_path(assigns(:run), user_id: @user.id)
   end
 
   test "should destroy run" do
     assert_difference("Run.count", -1) do
-      delete :destroy, id: @run
+      delete :destroy, user_id: @user.id, id: @run
     end
 
-    assert_redirected_to runs_path
+    assert_redirected_to user_runs_path
   end
 end

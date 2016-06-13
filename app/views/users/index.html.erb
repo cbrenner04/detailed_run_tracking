@@ -20,6 +20,7 @@
     <% @users.each do |user| %>
       <tr>
         <td>
+          <!-- Popover -->
           <button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Email" data-content="<%= user.email %>"><%= "#{user.first_name} #{user.last_name}" %></button>
         </td>
         <td>
@@ -48,6 +49,9 @@
               </div>
             </div>
           </span>
+        </td>
+        <td>
+          <div class="btn btn-default"><%= link_to 'Show Runs', user_runs_path(user) %></div>
         </td>
         <td>
           <div class="btn btn-default"><%= link_to 'Show', user %></div>

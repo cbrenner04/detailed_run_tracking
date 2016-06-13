@@ -8,7 +8,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(
+admin = User.create(
   email: "christopher.brenner1@yahoo.com",
   password: "password",
   first_name: "Chris",
@@ -22,5 +22,6 @@ User.create(
 Run.create(
   occurred_at: Time.zone.now,
   distance: 5.01,
-  time: 2580
+  time: 2580,
+  user: admin
 )

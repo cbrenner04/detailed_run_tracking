@@ -1,6 +1,10 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li><%= link_to 'Show', [@run.user, @run] %></li>
+  <li class="active"><%= link_to 'Edit', edit_user_run_path(@run.user, @run) %></li>
+</ul>
+
 <h1>Editing Run</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @run %> |
-<%= link_to 'Back', runs_path %>
+<%= link_to 'Back', user_runs_path(@run.user), class: "btn btn-default" %>

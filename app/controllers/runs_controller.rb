@@ -2,35 +2,57 @@
 class RunsController < ApplicationController
   before_action :set_run, only: [:show, :edit, :update, :destroy]
 
-  # GET /runs
-  # GET /runs.json
+  # GET user/:user_id/runs
+  # GET user/:user_id/runs.json
   def index
-    @runs = Run.all
+    user = User.find(params[:user_id])
+    @runs = user.runs
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @runs }
+    end
   end
 
-  # GET /runs/1
-  # GET /runs/1.json
+  # GET user/:user_id/runs/1
+  # GET user/:user_id/runs/1.json
   def show
+    user = User.find(params[:user_id])
+    @run = user.runs.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @runs }
+    end
   end
 
-  # GET /runs/new
+  # GET user/:user_id/runs/new
   def new
-    @run = Run.new
+    user = User.find(params[:user_id])
+    @run = user.runs.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @runs }
+    end
   end
 
-  # GET /runs/1/edit
+  # GET user/:user_id/runs/1/edit
   def edit
+    user = User.find(params[:user_id])
+    @run = user.runs.find(params[:id])
   end
 
-  # POST /runs
-  # POST /runs.json
+  # POST user/:user_id/runs
+  # POST user/:user_id/runs.json
   def create
-    @run = Run.new(run_params)
+    user = User.find(params[:user_id])
+    @run = user.runs.new(run_params)
 
     respond_to do |format|
       if @run.save
         flash[:success] = "Run was successfully created."
-        format.html { redirect_to @run }
+        format.html { redirect_to [@run.user, @run] }
         format.json { render :show, status: :created, location: @run }
       else
         flash[:danger] = "There was a problem saving the run."
@@ -40,13 +62,15 @@ class RunsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /runs/1
-  # PATCH/PUT /runs/1.json
+  # PATCH/PUT user/:user_id/runs/1
+  # PATCH/PUT user/:user_id/runs/1.json
   def update
+    user = User.find(params[:user_id])
+    @run = user.runs.find(params[:id])
     respond_to do |format|
       if @run.update(run_params)
         flash[:success] = "Run was successfully updated."
-        format.html { redirect_to @run }
+        format.html { redirect_to [@run.user, @run] }
         format.json { render :show, status: :ok, location: @run }
       else
         flash[:danger] = "There was a problem updating the run."
@@ -56,13 +80,15 @@ class RunsController < ApplicationController
     end
   end
 
-  # DELETE /runs/1
-  # DELETE /runs/1.json
+  # DELETE user/:user_id/runs/1
+  # DELETE user/:user_id/runs/1.json
   def destroy
+    user = User.find(params[:user_id])
+    @run = user.runs.find(params[:id])
     @run.destroy
     respond_to do |format|
       flash[:success] = "Run was successfully destroyed."
-      format.html { redirect_to runs_url }
+      format.html { redirect_to user_runs_url }
       format.json { head :no_content }
     end
   end

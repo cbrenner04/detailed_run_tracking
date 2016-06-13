@@ -1,8 +1,13 @@
-<p id="notice"><%= notice %></p>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><%= link_to 'View list', user_runs_path %></li>
+  <li><%= link_to new_user_run_path do %>
+    <i class="glyphicon glyphicon-plus"></i> New Run
+  <% end %></li>
+</ul>
 
 <h1>Listing Runs</h1>
 
-<table>
+<table class="table table-condensed table-hover">
   <thead>
     <tr>
       <th>Occurred at</th>
@@ -18,14 +23,20 @@
         <td><%= run.occurred_at %></td>
         <td><%= run.distance %></td>
         <td><%= run.time %></td>
-        <td><%= link_to 'Show', run %></td>
-        <td><%= link_to 'Edit', edit_run_path(run) %></td>
-        <td><%= link_to 'Destroy', run, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+            <div class="btn btn-default"><%= link_to 'Show', [run.user, run] %></div>
+        </td>
+        <td>
+          <% if current_user == run.user %>
+            <div class="btn btn-warning"><%= link_to 'Edit', edit_user_run_path(run.user, run) %></div>
+          <% end %>
+        </td>
+        <td>
+          <% if current_user == run.user %>
+            <div class="btn btn-danger"><%= link_to 'Destroy', [run.user, run], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Run', new_run_path %>
