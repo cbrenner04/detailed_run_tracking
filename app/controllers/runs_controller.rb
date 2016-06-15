@@ -100,11 +100,11 @@ class RunsController < ApplicationController
     @run = Run.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white
+  # Never trust parameters from the scary internet, only allow the white-
   # list through.
   def run_params
     params.require(:run).permit(:occurred_at, :distance, :time,
-                                :duration_hours, :duration_minutes,
-                                :duration_seconds)
+                                duration_attributes:
+                                [:hours, :minutes, :seconds])
   end
 end

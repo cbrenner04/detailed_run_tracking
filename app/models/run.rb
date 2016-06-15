@@ -2,13 +2,13 @@
 class Run < ActiveRecord::Base
   belongs_to :user
 
-  before_save :convert_time
+  before_save :convert_duration
 
-  def convert_time
-    string = time
-    hour_to_sec = (string[0..1]).to_i * 60 * 60
-    min_to_sec = (string[3..4]).to_i * 60
-    seconds = (string[6..7]).to_i
-    self.duration = hour_to_sec + min_to_sec + seconds
+  attr_writer :duration_attributes
+
+  def convert_duration
+    self.duration = (@duration_attributes[:hours].to_i * 60 * 60) +
+                    (@duration_attributes[:minutes].to_i * 60) +
+                    @duration_attributes[:seconds].to_i
   end
 end

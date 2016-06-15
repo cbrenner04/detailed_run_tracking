@@ -18,3 +18,5 @@
 
 # Ignore SimpleCov
 coverage
+
+.byebug_history
