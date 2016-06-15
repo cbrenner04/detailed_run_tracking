@@ -20,7 +20,7 @@
   <tbody>
     <% @runs.each do |run| %>
       <tr>
-        <td><%= run.occurred_at %></td>
+        <td><%= run.occurred_at.strftime("%b %d, %Y %H:%M") %></td>
         <td><%= run.distance %></td>
         <td><%= run.time %></td>
         <td>

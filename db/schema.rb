@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612230607) do
+ActiveRecord::Schema.define(version: 20160615042448) do
 
   create_table "runs", force: :cascade do |t|
     t.datetime "occurred_at", null: false
     t.float    "distance",    null: false
-    t.integer  "time",        null: false
+    t.string   "time",        null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.integer  "duration"
   end
 
   create_table "users", force: :cascade do |t|
