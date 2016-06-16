@@ -25,7 +25,7 @@ class RunsControllerTest < ActionController::TestCase
       post :create, user_id: @user.id, run: {
         distance: @run.distance,
         occurred_at: @run.occurred_at,
-        time: @run.time
+        duration: @run.duration
       }
     end
 
@@ -46,7 +46,7 @@ class RunsControllerTest < ActionController::TestCase
     patch :update, user_id: @user.id, id: @run, run: {
       distance: @run.distance,
       occurred_at: @run.occurred_at,
-      time: @run.time
+      duration: @run.duration
     }
     assert_redirected_to user_run_path(assigns(:run), user_id: @user.id)
   end

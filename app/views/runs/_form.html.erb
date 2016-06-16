@@ -17,13 +17,17 @@
   </div>
   <div class="field form-group">
     <%= f.label :distance %><br>
-    <%= f.text_field :distance, class: 'form-control' %>
-  </div>
+    <div class="col-sm-2">
+      <%= text_field_tag :"run[distance_attributes][length]", nil, class: 'form-control' %>
+    </div>
+    <%= select_tag :"run[distance_attributes][unit]", "<option>mi</option><option>km</option><option>m</option>".html_safe %>
+  </div><br>
   <div class="field form-group form-inline">
     <%= f.label :duration %><br>
-    <%= number_field_tag :"run[duration_attributes][hours]", class: 'form-control' %>
-    <%= number_field_tag :"run[duration_attributes][minutes]", class: 'form-control' %>
+    <%= number_field_tag :"run[duration_attributes][hours]", class: 'form-control' %> :
+    <%= number_field_tag :"run[duration_attributes][minutes]", class: 'form-control' %> :
     <%= number_field_tag :"run[duration_attributes][seconds]", class: 'form-control' %>
+    <p class="help-block">Format: HH:MM:SS</p>
   </div>
   <div class="actions form-group">
     <%= f.submit %>

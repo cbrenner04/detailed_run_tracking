@@ -103,8 +103,8 @@ class RunsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white-
   # list through.
   def run_params
-    params.require(:run).permit(:occurred_at, :distance, :time,
-                                duration_attributes:
+    params.require(:run).permit(:occurred_at, distance_attributes:
+                                [:unit, :length], duration_attributes:
                                 [:hours, :minutes, :seconds])
   end
 end

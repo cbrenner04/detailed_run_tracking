@@ -3,11 +3,11 @@
 one:
   occurred_at: 2016-06-11 18:40:49
   distance: 1.5
-  time: 1
   user: one
+  duration: 5602
 
 two:
   occurred_at: 2016-06-11 18:40:49
   distance: 1.5
-  time: 1
   user: one
+  duration: 5602

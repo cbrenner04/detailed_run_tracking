@@ -5,17 +5,20 @@
 
 <p>
   <strong>Occurred at:</strong>
-  <%= @run.occurred_at %>
+  <%= @run.occurred_at.strftime("%b %d, %Y %H:%M") %>
 </p>
 
 <p>
   <strong>Distance:</strong>
-  <%= @run.distance %>
+  <%= @run.distance.round(2) %>
 </p>
 
 <p>
   <strong>Duration:</strong>
-  <%= @run.duration %>
+  <%= seconds = @run.duration % 60
+      minutes = (@run.duration / 60) % 60
+      hours = @run.duration / (60 * 60)
+      format("%02d:%02d:%02d", hours, minutes, seconds) %>
 </p>
 
 <%= link_to 'Back', user_runs_path(@run.user), class: "btn btn-default" %>
