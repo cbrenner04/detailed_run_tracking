@@ -8,14 +8,14 @@
 <br>
 <div>Total Distance to date: <%= @runs.sum(:distance).round(2) %></div>
 
-<h1>Listing Runs</h1>
+<h1>Your Runs</h1>
 
 <table class="table table-condensed table-hover">
   <thead>
     <tr>
       <th>Occurred at</th>
-      <th>Distance</th>
-      <th>Duration (miles)</th>
+      <th>Distance (miles)</th>
+      <th>Duration</th>
       <th>Pace (min/mile)</th>
       <th colspan="3"></th>
     </tr>
@@ -24,7 +24,7 @@
   <tbody>
     <% @runs.each do |run| %>
       <tr>
-        <td><%= run.occurred_at.strftime("%b %d, %Y %H:%M") %></td>
+        <td><%= run.occurred_at.localtime.strftime("%b %d, %Y at %l:%M %P") %></td>
         <td><%= run.distance.round(2) %></td>
         <td><%= seconds = run.duration % 60
                 minutes = (run.duration / 60) % 60

@@ -14,7 +14,7 @@
   <div class="field form-group">
     <%= f.label :occurred_at %><br>
     <div class="col-sm-10">
-      <%= f.datetime_select :occurred_at, class: 'form-control' %>
+      <%= f.datetime_select :occurred_at, order: [:month, :day, :year, :hour, :minute], class: 'form-control' %> UTC
     </div>
   </div><br>
   <div class="field form-group">

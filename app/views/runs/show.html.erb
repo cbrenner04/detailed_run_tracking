@@ -3,13 +3,15 @@
   <li><%= link_to 'Edit', edit_user_run_path(@run.user, @run) %></li>
 </ul>
 
+<br>
+
 <p>
   <strong>Occurred at:</strong>
-  <%= @run.occurred_at.strftime("%b %d, %Y %H:%M") %>
+  <%= @run.occurred_at.localtime.strftime("%b %d, %Y %l:%M %P") %>
 </p>
 
 <p>
-  <strong>Distance:</strong>
+  <strong>Distance (miles):</strong>
   <%= @run.distance.round(2) %>
 </p>
 
@@ -20,5 +22,16 @@
       hours = @run.duration / (60 * 60)
       format("%02d:%02d:%02d", hours, minutes, seconds) %>
 </p>
+
+<p>
+  <strong>Pace (min/mile):</strong>
+  <%= pace = @run.duration / @run.distance
+      seconds = pace % 60
+      minutes = (pace / 60) % 60
+      hours = pace / (60 * 60)
+      format("%02d:%02d:%02d", hours, minutes, seconds) %>
+</p>
+
+<br>
 
 <%= link_to 'Back', user_runs_path(@run.user), class: "btn btn-default" %>

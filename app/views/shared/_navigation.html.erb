@@ -2,15 +2,32 @@
 
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
+    <!--Brand-->
     <div class="navbar-header">
       <a class="navbar-brand" href="/">Detailed Run Tracking</a>
     </div>
+    <!--Rest of navigation-->
     <div class="collapse navbar-collapse">
+      <!--Links-->
+      <ul class="nav navbar-nav">
+        <li>
+          <% if user_signed_in? %>
+            <%= link_to 'Users', users_path %> 
+          <% end %>
+        </li>
+        <li>
+          <% if user_signed_in? %>
+            <%= link_to 'Runs', user_runs_path(current_user) %> 
+          <% end %>
+        </li>
+      </ul>
+      <!--Sign Out-->
       <ul class="nav navbar-nav navbar-right">
         <li>
           <% if user_signed_in? %>
-            <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li> 
+            <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %> 
           <% end %>
+        </li>
       </ul>
     </div>
   </div>
