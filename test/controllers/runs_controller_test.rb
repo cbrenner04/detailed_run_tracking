@@ -23,9 +23,9 @@ class RunsControllerTest < ActionController::TestCase
   test "should create run" do
     assert_difference("Run.count") do
       post :create, user_id: @user.id, run: {
-        distance: @run.distance,
         occurred_at: @run.occurred_at,
-        duration: @run.duration
+        distance_attributes: { unit: "mi", length: 1 },
+        duration_attributes: { hours: 1, minutes: 1, seconds: 1 }
       }
     end
 
@@ -44,9 +44,9 @@ class RunsControllerTest < ActionController::TestCase
 
   test "should update run" do
     patch :update, user_id: @user.id, id: @run, run: {
-      distance: @run.distance,
       occurred_at: @run.occurred_at,
-      duration: @run.duration
+      distance_attributes: { unit: "mi", length: 1 },
+      duration_attributes: { hours: 1, minutes: 1, seconds: 1 }
     }
     assert_redirected_to user_run_path(assigns(:run), user_id: @user.id)
   end
