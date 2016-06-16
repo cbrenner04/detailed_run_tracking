@@ -21,7 +21,7 @@ admin = User.create(
 
 Run.create(
   occurred_at: Time.zone.now,
-  distance: 5.01,
+  distance_attributes: { unit: "mi", length: 5.01 },
   user: admin,
-  duration: 5602
+  duration_attributes: { hours: 0, minutes: 45, seconds: 30 }
 )

@@ -5,6 +5,9 @@
   <% end %></li>
 </ul>
 
+<br>
+<div>Total Distance to date: <%= @runs.sum(:distance).round(2) %></div>
+
 <h1>Listing Runs</h1>
 
 <table class="table table-condensed table-hover">
@@ -12,7 +15,8 @@
     <tr>
       <th>Occurred at</th>
       <th>Distance</th>
-      <th>Duration</th>
+      <th>Duration (miles)</th>
+      <th>Pace (min/mile)</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,8 +30,13 @@
                 minutes = (run.duration / 60) % 60
                 hours = run.duration / (60 * 60)
                 format("%02d:%02d:%02d", hours, minutes, seconds) %></td>
+        <td><%= duration_per_mile = (run.duration / run.distance)
+                seconds = duration_per_mile % 60
+                minutes = (duration_per_mile / 60) % 60
+                hours = duration_per_mile / (60 * 60)
+                format("%02d:%02d:%02d", hours, minutes, seconds) %>
         <td>
-            <div class="btn btn-default"><%= link_to 'Show', [run.user, run] %></div>
+          <div class="btn btn-default"><%= link_to 'Show', [run.user, run] %></div>
         </td>
         <td>
           <% if current_user == run.user %>
