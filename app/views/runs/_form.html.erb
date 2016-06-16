@@ -13,21 +13,27 @@
 
   <div class="field form-group">
     <%= f.label :occurred_at %><br>
-    <%= f.datetime_select :occurred_at, class: 'form-control' %>
-  </div>
+    <div class="col-sm-10">
+      <%= f.datetime_select :occurred_at, class: 'form-control' %>
+    </div>
+  </div><br>
   <div class="field form-group">
     <%= f.label :distance %><br>
     <div class="col-sm-2">
       <%= text_field_tag :"run[distance_attributes][length]", nil, class: 'form-control' %>
     </div>
-    <%= select_tag :"run[distance_attributes][unit]", "<option>mi</option><option>km</option><option>m</option>".html_safe %>
-  </div><br>
+    <div class="col-sm-2">
+      <%= select_tag :"run[distance_attributes][unit]", "<option>mi</option><option>km</option><option>m</option>".html_safe %>
+    </div>
+  </div><br><br>
   <div class="field form-group form-inline">
     <%= f.label :duration %><br>
-    <%= number_field_tag :"run[duration_attributes][hours]", class: 'form-control' %> :
-    <%= number_field_tag :"run[duration_attributes][minutes]", class: 'form-control' %> :
-    <%= number_field_tag :"run[duration_attributes][seconds]", class: 'form-control' %>
-    <p class="help-block">Format: HH:MM:SS</p>
+    <div class="col-sm-10">
+      <%= number_field_tag :"run[duration_attributes][hours]", nil, within: (0..60), class: 'form-control' %> :
+      <%= number_field_tag :"run[duration_attributes][minutes]", nil, within: (0..60), class: 'form-control' %> :
+      <%= number_field_tag :"run[duration_attributes][seconds]", nil, within: (0..60), class: 'form-control' %>
+      <p class="help-block">Format: HH:MM:SS</p>
+    </div><br><br><br>
   </div>
   <div class="actions form-group">
     <%= f.submit %>

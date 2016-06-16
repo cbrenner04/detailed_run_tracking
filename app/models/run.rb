@@ -2,11 +2,15 @@
 class Run < ActiveRecord::Base
   belongs_to :user
 
-  before_save :convert_duration
-  before_save :convert_distance
-
   attr_writer :duration_attributes
   attr_writer :distance_attributes
+
+  validates :occurred_at, presence: true
+  validate :existance_of_distance_attributes
+  validate :existance_of_duration_attributes
+
+  before_save :convert_duration
+  before_save :convert_distance
 
   def convert_duration
     self.duration = (@duration_attributes[:hours].to_i * 60 * 60) +
@@ -22,5 +26,19 @@ class Run < ActiveRecord::Base
                     else
                       @distance_attributes[:length].to_f
                     end
+  end
+
+  private
+
+  def existance_of_distance_attributes
+    if @distance_attributes.nil?
+      errors.add(:distance_attributes, "distance must have a value")
+    end
+  end
+
+  def existance_of_duration_attributes
+    if @duration_attributes.nil?
+      errors.add(:duration_attributes, "duration must have a value")
+    end
   end
 end

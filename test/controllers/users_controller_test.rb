@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 require "test_helper"
+require "devise"
 
 # users controller test
 class UsersControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @user = users(:one)
     sign_in users(:two)
@@ -17,6 +20,17 @@ class UsersControllerTest < ActionController::TestCase
   test "should get new" do
     get :new
     assert_response :success
+  end
+
+  test "should not create user" do
+    assert_no_difference("User.count") do
+      post :create, user: {
+        birth_date: Time.zone.today - 20.years,
+        height: 72,
+        last_name: "Last",
+        weight: 150
+      }
+    end
   end
 
   test "should create user" do
@@ -43,6 +57,17 @@ class UsersControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, id: @user
     assert_response :success
+  end
+
+  test "should not update user" do
+    patch :update, id: @user, user: {
+      birth_date: Time.zone.today - 21.years,
+      height: 60,
+      last_name: "Last",
+      weight: 160
+    }
+    assert @user.email == "MyString"
+    assert_not @user.birth_date == Time.zone.today - 21.years
   end
 
   test "should update user" do

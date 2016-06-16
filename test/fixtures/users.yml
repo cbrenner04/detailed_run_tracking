@@ -5,7 +5,7 @@ one:
   encrypted_password: MyString
   first_name: MyString
   last_name: MyString
-  birth_date: 2016-06-10
+  birth_date: <%= Time.zone.today %>
   height: 1
   weight: 1
   is_admin: true
@@ -15,6 +15,6 @@ two:
   encrypted_password: NewSting
   first_name: NewSting
   last_name: NewSting
-  birth_date: 2016-06-10
+  birth_date: <%= Time.zone.today %>
   height: 1
   weight: 1
