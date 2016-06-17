@@ -36,6 +36,9 @@
     <%= f.label :weight %><br>
     <%= f.number_field :weight, class: 'form-control' %>
   </div>
+  <div class="field form-group">
+    <%= f.time_zone_select :time_zone, nil, include_blank: true %>
+  </div>
   <div class="actions form-group">
     <%= f.submit %>
   </div>

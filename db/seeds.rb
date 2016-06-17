@@ -16,7 +16,8 @@ admin = User.create(
   height: 70,
   weight: 170,
   birth_date: Date.strptime("05/29/1986", "%m/%d/%Y"),
-  is_admin: true
+  is_admin: true,
+  time_zone: "Central Time (US & Canada)"
 )
 
 Run.create(
@@ -48,7 +49,7 @@ user_1 = User.create(
   height: 62,
   weight: 125,
   birth_date: Date.strptime("10/09/1978", "%m/%d/%Y"),
-  is_admin: true
+  time_zone: "Central Time (US & Canada)"
 )
 
 Run.create(

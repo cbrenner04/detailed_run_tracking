@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616015600) do
+ActiveRecord::Schema.define(version: 20160617215509) do
 
   create_table "runs", force: :cascade do |t|
     t.datetime "occurred_at", null: false
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160616015600) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "is_admin",               default: false
+    t.string   "time_zone",              default: "UTC"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
