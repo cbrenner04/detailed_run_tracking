@@ -11,25 +11,18 @@
 </p>
 
 <p>
-  <strong>Distance (miles):</strong>
-  <%= @run.distance.round(2) %>
+  <strong>Distance:</strong>
+  <%= "#{@run.distance.round(2)} miles" %>
 </p>
 
 <p>
   <strong>Duration:</strong>
-  <%= seconds = @run.duration % 60
-      minutes = (@run.duration / 60) % 60
-      hours = @run.duration / (60 * 60)
-      format("%02d:%02d:%02d", hours, minutes, seconds) %>
+  <%= total_duration(@run) %>
 </p>
 
 <p>
-  <strong>Pace (min/mile):</strong>
-  <%= pace = @run.duration / @run.distance
-      seconds = pace % 60
-      minutes = (pace / 60) % 60
-      hours = pace / (60 * 60)
-      format("%02d:%02d:%02d", hours, minutes, seconds) %>
+  <strong>Pace:</strong>
+  <%= pace(duration: @run.duration, distance: @run.distance) %>
 </p>
 
 <br>
