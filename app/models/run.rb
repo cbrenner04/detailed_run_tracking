@@ -2,15 +2,12 @@
 class Run < ActiveRecord::Base
   belongs_to :user
 
-  attr_writer :duration_attributes
-  attr_writer :distance_attributes
+  attr_writer :duration_attributes, :distance_attributes
 
   validates :occurred_at, presence: true
-  validate :existance_of_distance_attributes
-  validate :existance_of_duration_attributes
+  validate :existance_of_distance_attributes, :existance_of_duration_attributes
 
-  before_save :convert_duration
-  before_save :convert_distance
+  before_save :convert_duration, :convert_distance
 
   def convert_duration
     self.duration = (@duration_attributes[:hours].to_i * 60 * 60) +

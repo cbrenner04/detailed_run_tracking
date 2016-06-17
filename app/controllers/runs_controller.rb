@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 class RunsController < ApplicationController
   before_action :set_run, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET user/:user_id/runs
   # GET user/:user_id/runs.json
   def index
-    user = User.find(params[:user_id])
-    @runs = user.runs
+    @user = User.find(params[:user_id] || current_user.id)
+    @runs = @user.runs
 
     respond_to do |format|
       format.html # index.html.erb

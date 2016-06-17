@@ -1,14 +1,39 @@
-<ul class="nav nav-tabs" role="tablist">
-  <li class="active"><%= link_to 'View list', user_runs_path %></li>
-  <li><%= link_to new_user_run_path do %>
-    <i class="glyphicon glyphicon-plus"></i> New Run
-  <% end %></li>
-</ul>
+<% if @user == current_user %>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active"><%= link_to 'View list', user_runs_path(@user) %></li>
+    <li><%= link_to new_user_run_path(@user) do %>
+      <i class="glyphicon glyphicon-plus"></i> New Run
+    <% end %></li>
+  </ul>
+<% end %>
 
 <br>
-<div>Total Distance to date: <%= @runs.sum(:distance).round(2) %></div>
+<ul class="list-inline">
+  <li>
+    <strong>Total Distance to date: </strong>
+    <%= @runs.sum(:distance).round(2) %>
+  </li>
+  <li>
+    <strong>Total Distance this month: </strong>
+    <%= month_runs = @runs.where(
+          occurred_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month
+        )
+        month_runs.sum(:distance).round(2) %>
+  </li>
+  <li>
+    <strong>Total Distance this week: </strong>
+    <%= week_runs = @runs.where(
+          occurred_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_week
+        )
+        week_runs.sum(:distance).round(2) %>
+  </li>
+</ul>
 
-<h1>Your Runs</h1>
+<% if @user == current_user %>
+  <h1>Your Runs</h1>
+<% else %>
+  <h1><%= "#{@user.first_name.capitalize}'s Runs" %></h1>
+<% end %>
 
 <table class="table table-condensed table-hover">
   <thead>
