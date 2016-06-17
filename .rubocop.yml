@@ -7,6 +7,9 @@ AllCops:
     - vendor/**/*
   TargetRubyVersion: 2.3
 
+AbcSize:
+  Max: 20
+
 Rails:
   Enabled: true
 
@@ -20,7 +23,7 @@ LambdaCall:
 LineLength:
   Exclude:
     - spec/**/*
-  Max: 80
+  Max: 95
 
 NumericLiterals:
   Enabled: false

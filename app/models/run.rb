@@ -28,14 +28,12 @@ class Run < ActiveRecord::Base
   private
 
   def existance_of_distance_attributes
-    if @distance_attributes.nil?
-      errors.add(:distance_attributes, "distance must have a value")
-    end
+    return unless @distance_attributes.nil?
+    errors.add(:distance_attributes, "distance must have a value")
   end
 
   def existance_of_duration_attributes
-    if @duration_attributes.nil?
-      errors.add(:duration_attributes, "duration must have a value")
-    end
+    return unless @duration_attributes.nil?
+    errors.add(:duration_attributes, "duration must have a value")
   end
 end
