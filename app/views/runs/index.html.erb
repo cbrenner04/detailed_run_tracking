@@ -60,7 +60,7 @@
   <tbody>
     <% @runs.order(occurred_at: :desc).each do |run| %>
       <tr>
-        <td><%= run.occurred_at.localtime.strftime("%b %d, %Y at %l:%M %P") %></td>
+        <td><%= run.occurred_at.strftime("%b %d, %Y at %l:%M %P") %></td>
         <td><%= "#{run.distance.round(2)} miles" %></td>
         <td><%= total_duration(run) %></td>
         <td><%= pace(duration: run.duration, distance: run.distance) %>
