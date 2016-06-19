@@ -29,6 +29,46 @@
   <%= pace(duration: @run.duration, distance: @run.distance) %>
 </p>
 
+<p>
+  <strong>Type of Workout:</strong>
+  <%= @run.type_of_workout %>
+</p>
+
+<p>
+  <strong>Environment:</strong>
+  <%= @run.environment %>
+</p>
+
+<% if @run.environment == "Outside" %>
+  <p>
+    <strong>Surface:</strong>
+    <%= @run.surface %>
+  </p>
+
+  <p>
+    <strong>Temperature:</strong>
+    <%= @run.temperature %>
+  </p>
+<% end %>
+
+<p>
+  <strong>How it Went:</strong>
+  <%= @run.how_it_went %>
+</p>
+
+<p>
+  <strong>Last Meal:</strong>
+  <%= @run.last_meal %>
+</p>
+
+<p>
+  <strong>Time of Last Meal:</strong>
+  <% unless @run.time_of_last_meal.nil? %>
+    <%= @run.time_of_last_meal.strftime("%b %d, %Y %l:%M %P") %>
+    <%= @run.user.time_zone %>
+  <% end %>
+</p>
+
 <br>
 
 <%= link_to 'Back', user_runs_path(@run.user), class: "btn btn-default" %>

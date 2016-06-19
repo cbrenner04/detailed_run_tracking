@@ -13,32 +13,148 @@
 
   <div class="field form-group">
     <%= f.label :occurred_at %><br>
+
     <div class="col-sm-10">
-      <%= f.datetime_select :occurred_at, order: [:month, :day, :year, :hour, :minute], class: 'form-control' %><small><%= @run.user.time_zone %></small><br>
+      <%= f.datetime_select :occurred_at, order: [:month, :day, :year, :hour, :minute], class: 'form-control' %>
+      <small><%= @run.user.time_zone %></small>
+
+      <br>
+
       <% if @run.user.time_zone == "UTC" %>
         <small>Make sure to set your preferred time zone by editing your profile on the "Users" page.</small>
       <% end %>
     </div>
-  </div><br><br>
+  </div>
+
+  <br><br>
+
   <div class="field form-group">
     <%= f.label :distance %><br>
+
     <div class="col-sm-2">
       <%= text_field_tag :"run[distance_attributes][length]", @run.distance, class: 'form-control' %>
     </div>
-    <div class="col-sm-2">
-      <%= select_tag :"run[distance_attributes][unit]", "<option>mi</option><option>km</option><option>m</option>".html_safe %>
+
+    <div class="col-sm-1">
+      <%= select_tag :"run[distance_attributes][unit]", options_for_select(["mi", "km", "m"]), class: "form-control" %>
     </div>
-  </div><br><br>
+  </div>
+
+  <br><br>
+
   <div class="field form-group form-inline">
     <%= f.label :duration %><br>
-    <div class="col-sm-10">
+
+    <div class="col-sm-5">
       <%= number_field_tag :"run[duration_attributes][hours]", hours(@run.duration), within: (0..60), class: 'form-control' %> :
       <%= number_field_tag :"run[duration_attributes][minutes]", minutes(@run.duration), within: (0..60), class: 'form-control' %> :
       <%= number_field_tag :"run[duration_attributes][seconds]", seconds(@run.duration), within: (0..60), class: 'form-control' %>
       <p class="help-block">Format: HH:MM:SS</p>
-    </div><br><br><br>
+    </div>
   </div>
+
+  <br><br><br>
+
+  <div class="field form-group">
+    <%= f.label :type_of_workout %><br>
+
+    <div class="col-sm-5">
+      <%= f.text_field :type_of_workout, value: @run.type_of_workout, class: "form-control" %>
+      <p class="help-block">Examples: LSD (long slow distance); 4x600 Repeats; Easy run; Intervals, etc. </p>
+    </div>
+  </div>
+
+  <br><br><br><br>
+
+  <div class="field form-group">
+    <%= f.label :environment %><br>
+
+    <div class="col-sm-2">
+      <%= select_tag :"run[environment]", options_for_select(['Outside', 'Inside'], @run.environment), class: "form-control", id: "environment" %>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="outside">
+    <div class="field form-group">
+      <%= f.label :surface %><br>
+
+      <div class="col-sm-2">
+        <%= select_tag :"run[surface]", options_for_select(['Road', 'Trail', 'Beach'], @run.surface), class: "form-control" %>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div class="field form-group">
+      <%= f.label :temperature %><br>
+
+      <div class="col-sm-1">
+        <%= number_field_tag :"run[temperature_attributes][value]", @run.temperature, class: "form-control" %>
+      </div>
+      <div class="col-sm-1">
+        <%= select_tag :"run[temperature_attributes][unit]", options_for_select(["F", "C"]), class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="field form-group">
+    <%= f.label :how_it_went, "How did it go?" %><br>
+
+    <div class="col-sm-5">
+      <%= f.text_field :how_it_went, value: @run.how_it_went, class: "form-control" %>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="field form-group">
+    <%= f.label :last_meal, "What was your last meal?" %><br>
+
+    <div class="col-sm-5">
+      <%= f.text_field :last_meal, value: @run.last_meal, class: "form-control" %>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="field form-group">
+    <%= f.label :time_of_last_meal, "What time did you last eat?" %><br>
+
+    <div class="col-sm-10">
+      <%= f.datetime_select :time_of_last_meal, order: [:month, :day, :year, :hour, :minute], class: 'form-control' %>
+      <small><%= @run.user.time_zone %></small>
+
+      <br>
+
+      <% if @run.user.time_zone == "UTC" %>
+        <small>Make sure to set your preferred time zone by editing your profile on the "Users" page.</small>
+      <% end %>
+    </div>
+  </div>
+
+  <br><br>
+
   <div class="actions form-group">
     <%= f.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $(function(){
+    if ($('#environment').val() == 'Inside')
+        $('.outside').hide();
+  });
+
+  $('#environment').change(function () {
+    if ($('#environment option:selected').text() == "Inside"){
+      $('.outside').hide();
+    }
+    else if ($('#environment option:selected').text() == "Outside"){
+      $('.outside').show();
+    }
+  });
+</script>

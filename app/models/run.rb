@@ -2,12 +2,14 @@
 class Run < ActiveRecord::Base
   belongs_to :user
 
-  attr_writer :duration_attributes, :distance_attributes
+  attr_writer :duration_attributes, :distance_attributes,
+              :temperature_attributes
 
   validates :occurred_at, presence: true
-  validate :existance_of_distance_attributes, :existance_of_duration_attributes
+  validate :existance_of_distance_attributes,
+           :existance_of_duration_attributes
 
-  before_save :convert_duration, :convert_distance
+  before_save :convert_duration, :convert_distance, :convert_temperature
 
   def convert_duration
     self.duration = (@duration_attributes[:hours].to_i * 60 * 60) +
@@ -23,6 +25,16 @@ class Run < ActiveRecord::Base
                     else
                       @distance_attributes[:length].to_f
                     end
+  end
+
+  def convert_temperature
+    unless @temperature_attributes.nil?
+      self.temperature = if @temperature_attributes[:unit] == "C"
+                           ((@temperature_attributes[:value].to_i * 9) / 5) + 32
+                         else
+                           @temperature_attributes[:value].to_i
+                         end
+    end
   end
 
   private

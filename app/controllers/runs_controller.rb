@@ -95,9 +95,13 @@ class RunsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white-
   # list through.
   def run_params
-    params.require(:run).permit(:occurred_at, distance_attributes:
-                                [:unit, :length], duration_attributes:
-                                [:hours, :minutes, :seconds])
+    params.require(:run).permit(
+      :occurred_at, :type_of_workout, :environment, :surface,
+      :how_it_went, :last_meal, :time_of_last_meal,
+      distance_attributes: [:unit, :length],
+      duration_attributes: [:hours, :minutes, :seconds],
+      temperature_attributes: [:value, :unit]
+    )
   end
 
   def user

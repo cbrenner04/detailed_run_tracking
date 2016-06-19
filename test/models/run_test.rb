@@ -56,4 +56,26 @@ class RunTest < ActiveSupport::TestCase
     run.save
     assert (run.duration == 3661), "Duration not converted"
   end
+
+  test "should convert temperature from Celsius" do
+    run = Run.new(
+      occurred_at: Time.zone.now,
+      distance_attributes: { unit: "mi", length: 1 },
+      duration_attributes: { hours: 1, minutes: 1, seconds: 1 },
+      temperature_attributes: { value: 0, unit: "C" }
+    )
+    run.save
+    assert (run.temperature == 32), "Temperature not converted"
+  end
+
+  test "should not convert temperature from Fahrenheit" do
+    run = Run.new(
+      occurred_at: Time.zone.now,
+      distance_attributes: { unit: "mi", length: 1 },
+      duration_attributes: { hours: 1, minutes: 1, seconds: 1 },
+      temperature_attributes: { value: 0, unit: "F" }
+    )
+    run.save
+    assert (run.temperature == 0), "Temperature converted"
+  end
 end

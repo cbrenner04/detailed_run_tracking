@@ -4,10 +4,28 @@ one:
   occurred_at: 2016-06-11 18:40:49
   distance: 1.5
   user: one
-  duration: 5602
+  duration: 560
 
 two:
   occurred_at: 2016-06-11 18:40:49
   distance: 1.5
   user: one
+  duration: 560
+
+three:
+  occurred_at: <%= Time.zone.now.beginning_of_month - 1.days %>
+  distance: 12
+  user: two
+  duration: 5602
+
+four:
+  occurred_at: <%= Time.zone.now.beginning_of_week - 1.days %>
+  distance: 12
+  user: two
+  duration: 5602
+
+five:
+  occurred_at: <%= Time.zone.now - 1.days %>
+  distance: 12
+  user: two
   duration: 5602
