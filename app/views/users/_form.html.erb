@@ -37,7 +37,8 @@
     <%= f.number_field :weight, class: 'form-control' %>
   </div>
   <div class="field form-group">
-    <%= f.time_zone_select :time_zone, nil, include_blank: true %>
+    <small>Please select your preferred time zone.</small>
+    <%= f.time_zone_select :time_zone, nil, default: @user.time_zone %>
   </div>
   <div class="actions form-group">
     <%= f.submit %>

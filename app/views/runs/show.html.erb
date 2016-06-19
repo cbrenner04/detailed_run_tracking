@@ -5,9 +5,13 @@
 
 <br>
 
+<% if @run.user.time_zone == "UTC" %>
+  <small>Please make sure to set your preferred time zone.</small>
+<% end %>
 <p>
   <strong>Occurred at:</strong>
   <%= @run.occurred_at.strftime("%b %d, %Y %l:%M %P") %>
+  <%= @run.user.time_zone %>
 </p>
 
 <p>

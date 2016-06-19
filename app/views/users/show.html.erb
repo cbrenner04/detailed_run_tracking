@@ -10,19 +10,33 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <strong>Birth date:</strong>
-  <%= @user.birth_date.strftime('%b %d, %Y') %>
-</p>
+<% if @user.birth_date? %>
+  <p>
+    <strong>Birth date:</strong>
+    <%= @user.birth_date.strftime('%b %d, %Y') %>
+  </p>
+<% end %>
+
+<% if @user.height? %>
+  <p>
+    <strong>Height:</strong>
+    <%= "#{(@user.height / 12).floor}' #{@user.height % 12}\"" %>
+  </p>
+<% end %>
+
+<% if @user.weight?  %>
+  <p>
+    <strong>Weight:</strong>
+    <%= "#{@user.weight} lb" %>
+  </p>
+<% end %>
 
 <p>
-  <strong>Height:</strong>
-  <%= "#{(@user.height / 12).floor}' #{@user.height % 12}\"" %>
-</p>
-
-<p>
-  <strong>Weight:</strong>
-  <%= "#{@user.weight} lb" %>
+  <strong>Time zone:</strong>
+  <%= @user.time_zone %><br>
+  <% if @user.time_zone == "UTC" && current_user == @user %>
+    <small>Please edit your profile and select a preferred time zone so that you see and select the correct times for your runs.</small>
+  <% end %>
 </p>
 
 <%= link_to 'Back', users_path, class: "btn btn-default" %>
