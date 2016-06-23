@@ -46,9 +46,9 @@
     <%= f.label :duration %><br>
 
     <div class="col-sm-5">
-      <%= number_field_tag :"run[duration_attributes][hours]", hours(@run.duration), within: (0..60), class: 'form-control' %> :
-      <%= number_field_tag :"run[duration_attributes][minutes]", minutes(@run.duration), within: (0..60), class: 'form-control' %> :
-      <%= number_field_tag :"run[duration_attributes][seconds]", seconds(@run.duration), within: (0..60), class: 'form-control' %>
+      <%= number_field_tag :"run[duration_attributes][hours]", hours(@run.duration || 0), within: (0..60), class: 'form-control' %> :
+      <%= number_field_tag :"run[duration_attributes][minutes]", minutes(@run.duration || 0), within: (0..60), class: 'form-control' %> :
+      <%= number_field_tag :"run[duration_attributes][seconds]", seconds(@run.duration || 0), within: (0..60), class: 'form-control' %>
       <p class="help-block">Format: HH:MM:SS</p>
     </div>
   </div>

@@ -18,21 +18,25 @@ class Run < ActiveRecord::Base
   end
 
   def convert_distance
-    self.distance = if @distance_attributes[:unit] == "km"
-                      @distance_attributes[:length].to_f * 0.62137
-                    elsif @distance_attributes[:unit] == "m"
-                      @distance_attributes[:length].to_f * 0.00062137
+    distance_unit = @distance_attributes[:unit]
+    length_float = @distance_attributes[:length].to_f
+
+    self.distance = if distance_unit == "km"
+                      length_float * 0.62137
+                    elsif distance_unit == "m"
+                      length_float * 0.00062137
                     else
-                      @distance_attributes[:length].to_f
+                      length_float
                     end
   end
 
   def convert_temperature
     unless @temperature_attributes.nil?
+      temp_integer = @temperature_attributes[:value].to_i
       self.temperature = if @temperature_attributes[:unit] == "C"
-                           ((@temperature_attributes[:value].to_i * 9) / 5) + 32
+                           ((temp_integer * 9) / 5) + 32
                          else
-                           @temperature_attributes[:value].to_i
+                           temp_integer
                          end
     end
   end

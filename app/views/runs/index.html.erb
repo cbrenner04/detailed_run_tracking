@@ -65,16 +65,16 @@
         <td><%= total_duration(run) %></td>
         <td><%= pace(duration: run.duration, distance: run.distance) %>
         <td>
-          <div class="btn btn-default"><%= link_to 'Show', [run.user, run] %></div>
+          <%= link_to 'Show', [run.user, run], class: "btn btn-default" %>
         </td>
         <td>
           <% if current_user == run.user %>
-            <div class="btn btn-warning"><%= link_to 'Edit', edit_user_run_path(run.user, run) %></div>
+            <%= link_to 'Edit', edit_user_run_path(run.user, run), class: "btn btn-warning" %>
           <% end %>
         </td>
         <td>
           <% if current_user == run.user %>
-            <div class="btn btn-danger"><%= link_to 'Destroy', [run.user, run], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+            <%= link_to 'Destroy', [run.user, run], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           <% end %>
         </td>
       </tr>
