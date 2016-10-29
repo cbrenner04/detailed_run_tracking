@@ -28,11 +28,11 @@
 
   <div class="field form-group">
     <small>Please select your preferred time zone.</small>
-    <%= f.time_zone_select :time_zone, nil, include_blank: true %>
+    <%= f.time_zone_select :time_zone, nil, include_blank: true, html_options: { class: "form-control" } %>
   </div>
 
   <div class="actions form-group">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", { class: "btn btn-default" } %>
   </div>
 <% end %>
 

@@ -26,10 +26,10 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
   </div>
-  
+
   <div class="field form-group">
     <small>Please select your preferred time zone.</small>
-    <%= f.time_zone_select :time_zone, nil, include_blank: true %>
+    <%= f.time_zone_select :time_zone, nil, include_blank: true, class: "form-control" %>
   </div>
 
   <div class="actions form-group">

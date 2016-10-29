@@ -38,7 +38,7 @@
   </div>
   <div class="field form-group">
     <small>Please select your preferred time zone.</small>
-    <%= f.time_zone_select :time_zone, nil, default: @user.time_zone %>
+    <%= f.time_zone_select :time_zone, nil, default: @user.time_zone, class: "form-control" %>
   </div>
   <div class="actions form-group">
     <%= f.submit %>
