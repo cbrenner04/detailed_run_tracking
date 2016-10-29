@@ -11,11 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field form-group">
+  <div class="field form-group form-inline">
     <%= f.label :occurred_at %><br>
 
     <div class="col-sm-10">
-      <%= f.datetime_select :occurred_at, order: [:month, :day, :year, :hour, :minute], class: 'form-control' %>
+      <%= f.datetime_select :occurred_at, { order: [:month, :day, :year, :hour, :minute] }, { class: 'form-control' } %>
       <small><%= @run.user.time_zone %></small>
 
       <br>
@@ -124,8 +124,8 @@
   <div class="field form-group">
     <%= f.label :time_of_last_meal, "What time did you last eat?" %><br>
 
-    <div class="col-sm-10">
-      <%= f.datetime_select :time_of_last_meal, order: [:month, :day, :year, :hour, :minute], class: 'form-control' %>
+    <div class="col-sm-10 form-inline">
+      <%= f.datetime_select :time_of_last_meal, { order: [:month, :day, :year, :hour, :minute] }, { class: 'form-control' } %>
       <small><%= @run.user.time_zone %></small>
 
       <br>
@@ -139,7 +139,7 @@
   <br><br>
 
   <div class="actions form-group">
-    <%= f.submit %>
+    <%= f.submit "Continue", class: "btn btn-success" %>
   </div>
 <% end %>
 
