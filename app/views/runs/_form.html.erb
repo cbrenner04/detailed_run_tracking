@@ -1,12 +1,15 @@
 <%= form_for([@run.user, @run]) do |f| %>
   <% if @run.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@run.errors.count, "error") %> prohibited this run from being saved:</h2>
+      <h2>
+        <%= pluralize(@run.errors.count, "error") %>
+        prohibited this run from being saved:
+      </h2>
 
       <ul>
-      <% @run.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @run.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -15,13 +18,18 @@
     <%= f.label :occurred_at %><br>
 
     <div class="col-sm-10">
-      <%= f.datetime_select :occurred_at, { order: [:month, :day, :year, :hour, :minute] }, { class: 'form-control' } %>
+      <%= f.datetime_select :occurred_at,
+                            { order: [:month, :day, :year, :hour, :minute] },
+                            { class: 'form-control' } %>
       <small><%= @run.user.time_zone %></small>
 
       <br>
 
       <% if @run.user.time_zone == "UTC" %>
-        <small>Make sure to set your preferred time zone by editing your profile on the "Users" page.</small>
+        <small>
+          Make sure to set your preferred time zone by editing your profile on
+          the "Users" page.
+        </small>
       <% end %>
     </div>
   </div>
@@ -32,11 +40,15 @@
     <%= f.label :distance %><br>
 
     <div class="col-sm-2">
-      <%= text_field_tag :"run[distance_attributes][length]", @run.distance, class: 'form-control' %>
+      <%= text_field_tag :"run[distance_attributes][length]",
+                         @run.distance,
+                         class: 'form-control' %>
     </div>
 
     <div class="col-sm-1">
-      <%= select_tag :"run[distance_attributes][unit]", options_for_select(["mi", "km", "m"]), class: "form-control" %>
+      <%= select_tag :"run[distance_attributes][unit]",
+                     options_for_select(["mi", "km", "m"]),
+                     class: "form-control" %>
     </div>
   </div>
 
@@ -46,9 +58,18 @@
     <%= f.label :duration %><br>
 
     <div class="col-sm-5">
-      <%= number_field_tag :"run[duration_attributes][hours]", hours(@run.duration || 0), within: (0..60), class: 'form-control' %> :
-      <%= number_field_tag :"run[duration_attributes][minutes]", minutes(@run.duration || 0), within: (0..60), class: 'form-control' %> :
-      <%= number_field_tag :"run[duration_attributes][seconds]", seconds(@run.duration || 0), within: (0..60), class: 'form-control' %>
+      <%= number_field_tag :"run[duration_attributes][hours]",
+                           hours(@run.duration || 0),
+                           within: (0..60),
+                           class: 'form-control' %> :
+      <%= number_field_tag :"run[duration_attributes][minutes]",
+                           minutes(@run.duration || 0),
+                           within: (0..60),
+                           class: 'form-control' %> :
+      <%= number_field_tag :"run[duration_attributes][seconds]",
+                           seconds(@run.duration || 0),
+                           within: (0..60),
+                           class: 'form-control' %>
       <p class="help-block">Format: HH:MM:SS</p>
     </div>
   </div>
@@ -59,8 +80,13 @@
     <%= f.label :type_of_workout %><br>
 
     <div class="col-sm-5">
-      <%= f.text_field :type_of_workout, value: @run.type_of_workout, class: "form-control" %>
-      <p class="help-block">Examples: LSD (long slow distance); 4x600 Repeats; Easy run; Intervals, etc. </p>
+      <%= f.text_field :type_of_workout,
+                       value: @run.type_of_workout,
+                       class: "form-control" %>
+      <p class="help-block">
+        Examples: LSD (long slow distance); 4x600 Repeats; Easy run; Intervals,
+        etc.
+      </p>
     </div>
   </div>
 
@@ -70,7 +96,9 @@
     <%= f.label :environment %><br>
 
     <div class="col-sm-2">
-      <%= select_tag :"run[environment]", options_for_select(['Outside', 'Inside'], @run.environment), class: "form-control", id: "environment" %>
+      <%= select_tag :"run[environment]",
+                     options_for_select(['Outside', 'Inside'], @run.environment),
+                     class: "form-control", id: "environment" %>
     </div>
   </div>
 
@@ -81,7 +109,9 @@
       <%= f.label :surface %><br>
 
       <div class="col-sm-2">
-        <%= select_tag :"run[surface]", options_for_select(['Road', 'Trail', 'Beach'], @run.surface), class: "form-control" %>
+        <%= select_tag :"run[surface]",
+                       options_for_select(['Road', 'Trail', 'Beach'], @run.surface),
+                       class: "form-control" %>
       </div>
     </div>
 
@@ -91,10 +121,14 @@
       <%= f.label :temperature %><br>
 
       <div class="col-sm-1">
-        <%= number_field_tag :"run[temperature_attributes][value]", @run.temperature, class: "form-control" %>
+        <%= number_field_tag :"run[temperature_attributes][value]",
+                             @run.temperature,
+                             class: "form-control" %>
       </div>
       <div class="col-sm-1">
-        <%= select_tag :"run[temperature_attributes][unit]", options_for_select(["F", "C"]), class: "form-control" %>
+        <%= select_tag :"run[temperature_attributes][unit]",
+                       options_for_select(["F", "C"]),
+                       class: "form-control" %>
       </div>
     </div>
   </div>
@@ -105,7 +139,9 @@
     <%= f.label :how_it_went, "How did it go?" %><br>
 
     <div class="col-sm-5">
-      <%= f.text_field :how_it_went, value: @run.how_it_went, class: "form-control" %>
+      <%= f.text_field :how_it_went,
+                       value: @run.how_it_went,
+                       class: "form-control" %>
     </div>
   </div>
 
@@ -115,7 +151,9 @@
     <%= f.label :last_meal, "What was your last meal?" %><br>
 
     <div class="col-sm-5">
-      <%= f.text_field :last_meal, value: @run.last_meal, class: "form-control" %>
+      <%= f.text_field :last_meal,
+                       value: @run.last_meal,
+                       class: "form-control" %>
     </div>
   </div>
 
@@ -125,13 +163,18 @@
     <%= f.label :time_of_last_meal, "What time did you last eat?" %><br>
 
     <div class="col-sm-10 form-inline">
-      <%= f.datetime_select :time_of_last_meal, { order: [:month, :day, :year, :hour, :minute] }, { class: 'form-control' } %>
+      <%= f.datetime_select :time_of_last_meal,
+                            { order: [:month, :day, :year, :hour, :minute] },
+                            { class: 'form-control' } %>
       <small><%= @run.user.time_zone %></small>
 
       <br>
 
       <% if @run.user.time_zone == "UTC" %>
-        <small>Make sure to set your preferred time zone by editing your profile on the "Users" page.</small>
+        <small>
+          Make sure to set your preferred time zone by editing your profile on
+          the "Users" page.
+        </small>
       <% end %>
     </div>
   </div>

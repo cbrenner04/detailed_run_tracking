@@ -1,9 +1,11 @@
 <% if @user == current_user %>
   <ul class="nav nav-tabs" role="tablist">
     <li class="active"><%= link_to 'View list', user_runs_path(@user) %></li>
-    <li><%= link_to new_user_run_path(@user) do %>
-      <i class="glyphicon glyphicon-plus"></i> New Run
-    <% end %></li>
+    <li>
+      <%= link_to new_user_run_path(@user) do %>
+        <i class="glyphicon glyphicon-plus"></i> New Run
+      <% end %>
+    </li>
   </ul>
 <% end %>
 
@@ -15,17 +17,23 @@
         <dt>Distance:</dt>
         <dd><%= distance_for(@runs) %></dd>
         <dt>Average Pace:</dt>
-        <dd><%= pace(duration: @runs.sum(:duration), distance: @runs.sum(:distance)) %></dd>
+        <dd>
+          <%= pace(duration: @runs.sum(:duration),
+                   distance: @runs.sum(:distance)) %>
+        </dd>
       </dl>
     </div>
     <div class="col-sm-4">
       <h3>This month: </h3>
       <dl class="dl-horizontal">
-        <dt>Distance:</dt> 
+        <dt>Distance:</dt>
         <dd><%= distance_for(month_runs) %></dd>
         <dt>Average Pace:</dt>
-        <dd><%= pace(duration: month_runs.sum(:duration), distance: month_runs.sum(:distance)) %></dd>
-      </dd>
+        <dd>
+          <%= pace(duration: month_runs.sum(:duration),
+                   distance: month_runs.sum(:distance)) %>
+        </dd>
+      </dl>
     </div>
     <div class="col-sm-4">
       <h3>This Week: </h3>
@@ -33,9 +41,11 @@
         <dt>Distance:</dt>
         <dd><%= distance_for(week_runs) %></dd>
         <dt>Average Pace:</dt>
-        <dd><%= pace(duration: week_runs.sum(:duration), distance: week_runs.sum(:distance)) %></dd>
-      </dd>
-    </dl>
+        <dd>
+          <%= pace(duration: week_runs.sum(:duration),
+                   distance: week_runs.sum(:distance)) %>
+        </dd>
+      </dl>
     </div>
   </div>
 </div>
@@ -69,12 +79,18 @@
         </td>
         <td>
           <% if current_user == run.user %>
-            <%= link_to 'Edit', edit_user_run_path(run.user, run), class: "btn btn-warning" %>
+            <%= link_to 'Edit',
+                        edit_user_run_path(run.user, run),
+                        class: "btn btn-warning" %>
           <% end %>
         </td>
         <td>
           <% if current_user == run.user %>
-            <%= link_to 'Destroy', [run.user, run], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+            <%= link_to 'Destroy',
+                        [run.user, run],
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' },
+                        class: "btn btn-danger" %>
           <% end %>
         </td>
       </tr>

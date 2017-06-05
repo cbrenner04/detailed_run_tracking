@@ -5,11 +5,12 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    @users = UsersPresenter.from(User.all)
   end
 
   # GET /users/1
   def show
+    @user = UsersPresenter.new(current_user)
   end
 
   # GET /users/new
@@ -18,34 +19,33 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /users
   def create
     @user = User.new(user_params)
 
     respond_to do |format|
-      thing = if @user.save
-                redirect_to @user, notice: "User was successfully created."
-              else
-                render :new, alert: "There was a problem saving the user."
-              end
+      response = if @user.save
+                   redirect_to @user, notice: "User was successfully created."
+                 else
+                   render :new, alert: "There was a problem saving the user."
+                 end
 
-      format.html { thing }
+      format.html { response }
     end
   end
 
   # PATCH/PUT /users/1
   def update
     respond_to do |format|
-      thing = if @user.update(user_params)
-                redirect_to @user, notice: "User was successfully updated."
-              else
-                render :edit, alert: "There was a problem updating the user."
-              end
+      response = if @user.update(user_params)
+                   redirect_to @user, notice: "User was successfully updated."
+                 else
+                   render :edit, alert: "There was a problem updating the user."
+                 end
 
-      format.html { thing }
+      format.html { response }
     end
   end
 
@@ -53,7 +53,9 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html do
+        redirect_to users_url, notice: "User was successfully destroyed."
+      end
     end
   end
 
@@ -68,7 +70,13 @@ class UsersController < ApplicationController
   # list through.
   def user_params
     params.require(:user).permit(
-      :email, :password, :first_name, :last_name, :birth_date, :height, :weight,
+      :email,
+      :password,
+      :first_name,
+      :last_name,
+      :birth_date,
+      :height,
+      :weight,
       :time_zone
     )
   end

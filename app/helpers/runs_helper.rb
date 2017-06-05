@@ -5,7 +5,7 @@ module RunsHelper
 
   def distance_for(run)
     summed_distance = run.sum(:distance)
-    return if summed_distance == 0
+    return if summed_distance.zero?
     distance = summed_distance.round(2)
     "#{distance} miles"
   end
@@ -28,7 +28,7 @@ module RunsHelper
 
   def week_runs
     @runs.where(
-      occurred_at: now.beginning_of_week..now.end_of_week
+      occurred_at: now.beginning_of_week(:sunday)..now.end_of_week
     )
   end
 

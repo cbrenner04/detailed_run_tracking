@@ -13,7 +13,10 @@ class RunHelperTest < ActiveSupport::TestCase
   test "should calculate pace" do
     runs = users(:one).runs
     assert_equal "06:13 min/mile",
-                 pace(duration: runs.sum(:duration), distance: runs.sum(:distance))
+                 pace(
+                   duration: runs.sum(:duration),
+                   distance: runs.sum(:distance)
+                 )
   end
 
   test "should format duration" do

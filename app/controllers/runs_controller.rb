@@ -10,8 +10,7 @@ class RunsController < ApplicationController
   end
 
   # GET user/:user_id/runs/1
-  def show
-  end
+  def show; end
 
   # GET user/:user_id/runs/new
   def new
@@ -19,34 +18,35 @@ class RunsController < ApplicationController
   end
 
   # GET user/:user_id/runs/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST user/:user_id/runs
   def create
     @run = user.runs.new(run_params)
 
     respond_to do |format|
-      thing = if @run.save
-                redirect_to [@run.user, @run], notice: "Run was successfully created."
-              else
-                render :new, alert: "There was a problem saving the run."
-              end
+      response = if @run.save
+                   redirect_to [@run.user, @run],
+                               notice: "Run was successfully created."
+                 else
+                   render :new, alert: "There was a problem saving the run."
+                 end
 
-      format.html { thing }
+      format.html { response }
     end
   end
 
   # PATCH/PUT user/:user_id/runs/1
   def update
     respond_to do |format|
-      thing = if @run.update(run_params)
-                redirect_to [@run.user, @run], notice: "Run was successfully updated."
-              else
-                render :edit, alert: "There was a problem updating the run."
-              end
+      response = if @run.update(run_params)
+                   redirect_to [@run.user, @run],
+                               notice: "Run was successfully updated."
+                 else
+                   render :edit, alert: "There was a problem updating the run."
+                 end
 
-      format.html { thing }
+      format.html { response }
     end
   end
 
@@ -54,7 +54,9 @@ class RunsController < ApplicationController
   def destroy
     @run.destroy
     respond_to do |format|
-      format.html { redirect_to user_runs_url, notice: "Run was successfully destroyed." }
+      format.html do
+        redirect_to user_runs_url, notice: "Run was successfully destroyed."
+      end
     end
   end
 
@@ -68,13 +70,12 @@ class RunsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white-
   # list through.
   def run_params
-    params.require(:run).permit(
-      :occurred_at, :type_of_workout, :environment, :surface,
-      :how_it_went, :last_meal, :time_of_last_meal,
-      distance_attributes: [:unit, :length],
-      duration_attributes: [:hours, :minutes, :seconds],
-      temperature_attributes: [:value, :unit]
-    )
+    params.require(:run)
+          .permit(:occurred_at, :type_of_workout, :environment, :surface,
+                  :how_it_went, :last_meal, :time_of_last_meal,
+                  distance_attributes: [:unit, :length],
+                  duration_attributes: [:hours, :minutes, :seconds],
+                  temperature_attributes: [:value, :unit])
   end
 
   def user

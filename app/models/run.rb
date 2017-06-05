@@ -2,7 +2,8 @@
 class Run < ActiveRecord::Base
   belongs_to :user
 
-  attr_writer :duration_attributes, :distance_attributes,
+  attr_writer :duration_attributes,
+              :distance_attributes,
               :temperature_attributes
 
   validates :occurred_at, presence: true
@@ -19,14 +20,14 @@ class Run < ActiveRecord::Base
 
   def convert_distance
     distance_unit = @distance_attributes[:unit]
-    length_float = @distance_attributes[:length].to_f
+    length_as_float = @distance_attributes[:length].to_f
 
     self.distance = if distance_unit == "km"
-                      length_float * 0.62137
+                      length_as_float * 0.62137
                     elsif distance_unit == "m"
-                      length_float * 0.00062137
+                      length_as_float * 0.00062137
                     else
-                      length_float
+                      length_as_float
                     end
   end
 

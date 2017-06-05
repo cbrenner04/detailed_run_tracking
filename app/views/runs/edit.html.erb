@@ -1,6 +1,8 @@
 <ul class="nav nav-tabs" role="tablist">
   <li><%= link_to 'Show', [@run.user, @run] %></li>
-  <li class="active"><%= link_to 'Edit', edit_user_run_path(@run.user, @run) %></li>
+  <li class="active">
+    <%= link_to 'Edit', edit_user_run_path(@run.user, @run) %>
+  </li>
 </ul>
 
 <h1>Editing Run</h1>

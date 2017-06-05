@@ -14,29 +14,50 @@
       <tr>
         <td>
           <!-- Popover -->
-          <button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Email" data-content="<%= user.email %>"><%= "#{user.first_name} #{user.last_name}" %></button>
+          <button type="button"
+                  class="btn btn-link has-popover"
+                  data-toggle="popover"
+                  title="Email"
+                  data-content="<%= user.email %>">
+            <%= "#{user.first_name} #{user.last_name}" %>
+          </button>
         </td>
         <td>
-          <span class="has-tooltip" data-toggle="tooltip" title="Click to view Birth Date, Height, and Weight">
+          <span class="has-tooltip"
+                data-toggle="tooltip"
+                title="Click to view Birth Date, Height, and Weight">
             <!-- Button trigger modal -->
-            <button class="btn btn-link" data-toggle="modal" data-target="#user-<%= user.id %>-details">
+            <button class="btn btn-link"
+                    data-toggle="modal"
+                    data-target="#user-<%= user.id %>-details">
               View details
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="user-<%= user.id %>-details" tabindex="-1" role="dialog" aria-labelledby="user-<%= user.id %>-label" aria-hidden="true">
+            <div class="modal fade"
+                 id="user-<%= user.id %>-details"
+                 tabindex="-1"
+                 role="dialog"
+                 aria-labelledby="user-<%= user.id %>-label"
+                 aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title" id="user-<%= user.id %>-label">Details</h4>
+                    <h4 class="modal-title" id="user-<%= user.id %>-label">
+                      Details
+                    </h4>
                   </div>
                   <div class="modal-body">
-                    <li>Birth date: <%= user.birth_date.strftime('%B %d, %Y') if user.birth_date? %></li>
-                    <li>Height: <%= "#{(user.height / 12).floor}' #{user.height % 12}\"" if user.height? %></li>
-                    <li>Weight: <%= "#{user.weight} lb" if user.weight? %></li>
+                    <li>Birth date: <%= user.pretty_birth_date %></li>
+                    <li>Height: <%= user.pretty_height %></li>
+                    <li>Weight: <%= user.pretty_weight %></li>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-dismiss="modal">
+                      Close
+                    </button>
                   </div>
                 </div>
               </div>
@@ -44,19 +65,27 @@
           </span>
         </td>
         <td>
-          <%= link_to 'Show Runs', user_runs_path(user), class: "btn btn-default" %>
+          <%= link_to 'Show Runs',
+                      user_runs_path(user),
+                      class: "btn btn-default" %>
         </td>
         <td>
           <%= link_to 'Show', user, class: "btn btn-default" %></div>
         </td>
         <td>
           <% if (user == current_user) || (can? :manage, :all) %>
-            <%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning" %>
+            <%= link_to 'Edit',
+                        edit_user_path(user),
+                        class: "btn btn-warning" %>
           <% end %>
         </td>
         <td>
           <% if can? :manage, :all %>
-            <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+            <%= link_to 'Destroy',
+                        user,
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' },
+                        class: "btn btn-danger" %>
           <% end %>
         </td>
       </tr>
